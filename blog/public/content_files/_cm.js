@@ -1,0 +1,1 @@
+var s0=document.createElement("img");s0.src="http://idm.bce.baidu.com/t/ping.gif?dm=bce.baidu.com/a1002&ac=LEOR1470385700279154075&v=bce-1.0&rnd=42908&ext_bce_tid=a1002&ext_bce_pid=1021&ext_bce_uid=LEOR1470385700279154075";

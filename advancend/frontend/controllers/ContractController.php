@@ -36,6 +36,7 @@ class ContractController extends Controller
 			$countQuery = clone $query;
 		 	$pages = new Pagination(['totalCount' => $countQuery->count(),'pageSize'=>10]);
 			$conlist =$query->offset($pages->offset)
+					->joinWith('room')
 					->limit($pages->limit)
 					->asArray()
 			        ->all();
@@ -53,6 +54,7 @@ class ContractController extends Controller
 			$countQuery = clone $query;
 		 	$pages = new Pagination(['totalCount' => $countQuery->count(),'pageSize'=>10]);
 			$conlist = Contract::find()->joinWith('users')
+					->joinWith('room')
 					->where(['is_delete'=>0])
 					->offset($pages->offset)
 					->limit($pages->limit)
@@ -84,7 +86,7 @@ class ContractController extends Controller
 		
 		
 		$res=Yii::$app->db->createCommand()
-            ->delete($this->table, 'con_id in('.$con_id.")")
+            ->update($this->table,['is_delete'=>1],'con_id in('.$con_id.")")
             ->execute();
 
 
@@ -93,6 +95,7 @@ class ContractController extends Controller
 			$countQuery = clone $query;
 		 	$pages = new Pagination(['totalCount' => $countQuery->count(),'pageSize'=>10]);
 			$conlist = Contract::find()->joinWith('users')
+					->joinWith('room')
 					->where(['is_delete'=>0])
 					->offset($pages->offset)
 					->limit($pages->limit)
@@ -121,6 +124,7 @@ class ContractController extends Controller
     	$con_id= Yii::$app->request->get('con_id');
 
     	$query = Contract::find()->joinWith('users')
+    				->joinWith('room')
     				->where(['con_id'=>$con_id])
     				->asArray()
 			        ->all();
@@ -149,6 +153,43 @@ class ContractController extends Controller
   
 		var_dump($res);
     }
+
+
+
+    /**
+     * 电子合同查询页
+     *
+     * @return con_query.html
+     *
+     * @author likang
+     *
+     */
+
+    public function actionQuery()
+    {
+    	if (Yii::$app->request->isPost) {
+    		$user_name=!empty(Yii::$app->request->post('user_name'))?Yii::$app->request->post('user_name'):"";
+    		$room_city=!empty(Yii::$app->request->post('room_city'))?Yii::$app->request->post('room_city'):"";
+    		$start_time=!empty(Yii::$app->request->post('start_time'))?Yii::$app->request->post('start_time'):"";
+    		$end_time=!empty(Yii::$app->request->post('end_time'))?Yii::$app->request->post('end_time'):"";
+    		$con_type=!empty(Yii::$app->request->post('con_type'))?Yii::$app->request->post('con_type'):"";
+
+    		$query = Contract::find()->joinWith('check')
+    				->joinWith('users')
+					->joinWith('room')
+					->where(['contract.is_delete'=>0,'con_type'=>$con_type])
+					->andwhere(['and',['like','user_name',$user_name],['like','room_city',$room_city],['like','con_effecttime',$start_time],['like','con_endtime',$end_time]])
+					->andwhere(['or',['like','start_time',$start_time],['like','end_time',$end_time]])
+					->asArray()
+					->all();
+			return $this->render("con_query_show.html");
+    	}else{
+    		return $this->render("con_query.html");
+    	}
+    }
+
+
+
 
 
 }
