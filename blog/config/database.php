@@ -56,7 +56,7 @@ return [
             'driver' => 'mysql',
             'host' => 'localhost',
             'port' => '3306',
-            'database' => 'likang',
+            'database' => 'xiangmu',
             'username' => 'root',
             'password' => 'root',
             'charset' => 'utf8',
